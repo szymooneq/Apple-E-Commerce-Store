@@ -1,5 +1,5 @@
-import './Product.scss';
-
-export default function Product(): JSX.Element {
+function Product() {
 	return <div>Product</div>;
 }
+
+export default Product;
