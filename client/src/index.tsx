@@ -6,7 +6,6 @@ import './index.scss';
 import AppContext from './lib/context/AppContext';
 import Category from './pages/Category/Category';
 import Home from './pages/Home/Home';
-import Product from './pages/Product/Product';
 
 const router = createBrowserRouter([
 	{
@@ -19,11 +18,11 @@ const router = createBrowserRouter([
 			{
 				path: '/category/:id',
 				element: <Category />
-			},
-			{
+			}
+			/* {
 				path: '/product/:id',
 				element: <Product />
-			}
+			} */
 		]
 	}
 ]);

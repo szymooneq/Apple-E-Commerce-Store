@@ -1,0 +1,10 @@
+@import '../../lib/config/mixins.scss';
+
+.main-content {
+	margin: 0 auto;
+	max-width: calc(100% - 20px);
+
+	@include md {
+		max-width: 1200px;
+	}
+}
