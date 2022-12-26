@@ -1,4 +1,4 @@
-function Product() {
+function Product(): JSX.Element {
 	return <div>Product</div>;
 }
 

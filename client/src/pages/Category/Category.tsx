@@ -1,4 +1,4 @@
-function Category() {
+function Category(): JSX.Element {
 	return <div>Category</div>;
 }
 

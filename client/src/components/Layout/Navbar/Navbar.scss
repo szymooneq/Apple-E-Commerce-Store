@@ -1,0 +1,104 @@
+@import '../../../lib/config/mixins.scss';
+
+.main-navbar {
+	padding: 0 20px;
+	width: 100%;
+	color: #ffffff;
+	background-color: #212121;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	z-index: 99;
+
+	@include md {
+		padding: 0 40px;
+	}
+
+	.navbar-content {
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 1200px;
+		height: 50px;
+
+		@include md {
+			height: 80px;
+		}
+
+		.left {
+			display: none;
+			list-style-type: none;
+
+			@include md {
+				display: flex;
+				gap: 25px;
+			}
+
+			li {
+				font-size: 14px;
+				font-weight: 600;
+				text-transform: uppercase;
+				cursor: pointer;
+			}
+		}
+
+		.center {
+			font-size: 22px;
+			font-weight: 700;
+			cursor: pointer;
+
+			/* @include md {
+				position: absolute;
+				left: 5%;
+				font-size: 34px;
+				transform: translateX(-50%);
+			} */
+		}
+
+		.right {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+
+			@include md {
+				font-size: 24px;
+			}
+
+			svg {
+				font-size: 20px;
+				cursor: pointer;
+			}
+
+			.cart-icon {
+				position: relative;
+
+				span {
+					padding: 2.5px;
+					position: absolute;
+					top: -5px;
+					right: -12px;
+					min-width: 20px;
+					font-size: 12px;
+					line-height: 1;
+					text-align: center;
+					background-color: #8e2de2;
+					border-radius: 10px;
+				}
+			}
+		}
+	}
+
+	&.sticky-navbar {
+		position: sticky;
+		top: 0;
+		animation: stickyNav 0.3s ease forwards;
+	}
+}
+
+@keyframes stickyNav {
+	0% {
+		transform: translateY(-100%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
