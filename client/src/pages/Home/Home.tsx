@@ -10,7 +10,7 @@ function Home(): JSX.Element {
 			<div className="main-content">
 				<div className="layout">
 					<Categories />
-					<Products />
+					<Products headingText="Popular Products" />
 				</div>
 			</div>
 		</>
