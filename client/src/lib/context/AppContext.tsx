@@ -1,13 +1,33 @@
 import { createContext, useState } from 'react';
 
-const Context = createContext();
+interface ContextInterface {
+	categories: any;
+	setCategories: any;
+	products: any;
+	setProducts: any;
+}
 
-interface AppContext {
+export const Context = createContext<ContextInterface>({
+	categories: [],
+	setCategories: () => {},
+	products: [],
+	setProducts: () => {}
+});
+
+interface AppContextInterface {
 	children: React.ReactNode;
 }
 
-function AppContext({ children }: AppContext) {
-	return <Context.Provider>{children}</Context.Provider>;
+function AppContext({ children }: AppContextInterface) {
+	const [categories, setCategories] = useState();
+	const [products, setProducts] = useState();
+
+	return (
+		<Context.Provider
+			value={{ categories, setCategories, products, setProducts }}>
+			{children}
+		</Context.Provider>
+	);
 }
 
 export default AppContext;

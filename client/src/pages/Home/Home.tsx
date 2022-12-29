@@ -1,18 +1,30 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Categories from '../../components/Categories/Categories';
 import Header from '../../components/Header/Header';
 import Products from '../../components/Products/Products';
-import { fetchData } from '../../lib/api/api';
+import { fetchDataFromApi } from '../../lib/api/api';
+import { Context } from '../../lib/context/AppContext';
 import './Home.scss';
 
 function Home(): JSX.Element {
+	const { categories, setCategories, products, setProducts } =
+		useContext(Context);
+
 	useEffect(() => {
+		getProducts();
 		getCategories();
 	}, []);
 
-	const getCategories = () => {
-		fetchData('/api/categories?populate=*').then((res) => {
+	const getProducts = () => {
+		fetchDataFromApi('/api/products?populate=*').then((res) => {
 			console.log(res);
+			setProducts(res);
+		});
+	};
+
+	const getCategories = () => {
+		fetchDataFromApi('/api/categories?populate=*').then((res) => {
+			setCategories(res);
 		});
 	};
 
@@ -21,8 +33,8 @@ function Home(): JSX.Element {
 			<Header />
 			<div className="main-content">
 				<div className="layout">
-					<Categories />
-					<Products headingText="Popular Products" />
+					<Categories categories={categories} />
+					<Products products={products} headingText="Popular Products" />
 				</div>
 			</div>
 		</>

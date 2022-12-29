@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { CgShoppingCart } from 'react-icons/cg';
 import { TbSearch } from 'react-icons/tb';
+import { Link } from 'react-router-dom';
 import Cart from '../../Cart/Cart';
 import Search from '../../Search/Search';
 import './Navbar.scss';
@@ -29,11 +30,15 @@ function Navbar(): JSX.Element {
 			<nav className={`main-navbar ${scrolled ? 'sticky-navbar' : ''}`}>
 				<div className="navbar-content">
 					<ul className="left">
-						<li>Home</li>
+						<li>
+							<Link to="/">Home</Link>
+						</li>
 						<li>About</li>
 						<li>Categories</li>
 					</ul>
-					<div className="center">SD Store</div>
+					<div className="center">
+						<Link to="/">SD Store</Link>
+					</div>
 					<div className="right">
 						<TbSearch onClick={() => setShowSearch((prev) => !prev)} />
 						<AiOutlineHeart />

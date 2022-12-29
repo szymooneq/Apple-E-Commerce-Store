@@ -1,25 +1,26 @@
-import cat1 from '../../assets/category/cat-1.jpg';
-import cat2 from '../../assets/category/cat-2.jpg';
-import cat3 from '../../assets/category/cat-3.jpg';
-import cat4 from '../../assets/category/cat-4.jpg';
+import { Link } from 'react-router-dom';
+import { CategoriesApi } from '../../lib/interfaces/interfaces';
 import './Categories.scss';
 
-function Categories(): JSX.Element {
+interface Categories {
+	categories: CategoriesApi;
+}
+
+function Categories({ categories }: Categories): JSX.Element {
 	return (
 		<div className="shop-by-category">
 			<div className="categories">
-				<div className="category">
-					<img src={cat1} alt="" />
-				</div>
-				<div className="category">
-					<img src={cat2} alt="" />
-				</div>
-				<div className="category">
-					<img src={cat3} alt="" />
-				</div>
-				<div className="category">
-					<img src={cat4} alt="" />
-				</div>
+				{categories?.data?.map((item) => (
+					<Link to={`/category/${item.id}`} key={item.id} className="category">
+						<img
+							src={
+								import.meta.env.VITE_STRIPE_APP_DEV_URL +
+								item.attributes.image.data.attributes.url
+							}
+							alt={item.attributes.image.data.attributes.alternativeText}
+						/>
+					</Link>
+				))}
 			</div>
 		</div>
 	);

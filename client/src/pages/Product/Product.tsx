@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
 	FaCartPlus,
 	FaFacebookF,
@@ -6,28 +7,50 @@ import {
 	FaPinterest,
 	FaTwitter
 } from 'react-icons/fa';
-import prod from '../../assets/products/earbuds-prod-1.webp';
+import { useParams } from 'react-router-dom';
 import RelatedProducts from '../../components/Products/RelatedProducts/RelatedProducts';
+import useFetch from '../../lib/hooks/useFetch';
 import './Product.scss';
 
 function Product(): JSX.Element {
+	const [quantity, setQuantity] = useState(1);
+	const { id } = useParams();
+	const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
+
+	const decrement = () => {
+		setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
+	};
+
+	const increment = () => {
+		setQuantity((prev) => prev + 1);
+	};
+
+	if (!data) return;
+	const product = data.data[0].attributes;
+
 	return (
 		<div className="single-product-main-content">
 			<div className="layout">
 				<div className="single-product-page">
 					<div className="left">
-						<img src={prod} alt="" />
+						<img
+							src={
+								import.meta.env.VITE_STRIPE_APP_DEV_URL +
+								product.image.data[0].attributes.url
+							}
+							alt={product.image.data[0].attributes.alternativeText}
+						/>
 					</div>
 					<div className="right">
-						<span className="name">Name</span>
-						<span className="price">Price</span>
-						<span className="desc">Description</span>
+						<span className="name">{product.title}</span>
+						<span className="price">{product.price}</span>
+						<span className="desc">{product.description}</span>
 
 						<div className="cart-buttons">
 							<div className="quantity-buttons">
-								<span>-</span>
-								<span>5</span>
-								<span>+</span>
+								<span onClick={decrement}>-</span>
+								<span>{quantity}</span>
+								<span onClick={increment}>+</span>
 							</div>
 							<button className="add-to-cart-button">
 								<FaCartPlus size={20} />
@@ -40,7 +63,7 @@ function Product(): JSX.Element {
 						<div className="info-item">
 							<span className="text-bold">
 								Category:
-								<span>Headphones</span>
+								<span> {product.categories.data[0].attributes.title}</span>
 							</span>
 							<span className="text-bold">
 								Share:
@@ -55,7 +78,10 @@ function Product(): JSX.Element {
 						</div>
 					</div>
 				</div>
-				<RelatedProducts />
+				<RelatedProducts
+					productId={id}
+					categoryId={product.categories.data[0].id}
+				/>
 			</div>
 		</div>
 	);

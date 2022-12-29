@@ -1,17 +1,29 @@
-import prod from '../../../assets/products/earbuds-prod-1.webp';
+import { Link } from 'react-router-dom';
+import { ProductData } from '../../../lib/interfaces/interfaces';
 import './ProductCard.scss';
 
-function ProductCard(): JSX.Element {
+interface ProductCard {
+	id: number;
+	data: ProductData;
+}
+
+function ProductCard({ id, data }: ProductCard): JSX.Element {
 	return (
-		<div className="product-card">
+		<Link to={`/product/${id}`} className="product-card">
 			<div className="thumbnail">
-				<img src={prod} alt="Earbuds thumbnail" />
+				<img
+					src={
+						import.meta.env.VITE_STRIPE_APP_DEV_URL +
+						data.image.data[0].attributes.url
+					}
+					alt={data.image.data[0].attributes.alternativeText}
+				/>
 			</div>
 			<div className="produ-details">
-				<div className="name">Product name</div>
-				<div className="price">499$</div>
+				<div className="name">{data.title}</div>
+				<div className="price">{data.price}$</div>
 			</div>
-		</div>
+		</Link>
 	);
 }
 

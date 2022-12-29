@@ -6,7 +6,7 @@ const params = {
 	}
 };
 
-export const fetchData = async (url: string) => {
+export const fetchDataFromApi = async (url: string) => {
 	try {
 		const { data } = await axios.get(
 			import.meta.env.VITE_STRIPE_APP_DEV_URL + url,
