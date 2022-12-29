@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { CgShoppingCart } from 'react-icons/cg';
 import { TbSearch } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
+import { Context } from '../../../lib/context/AppContext';
 import Cart from '../../Cart/Cart';
 import Search from '../../Search/Search';
 import './Navbar.scss';
@@ -11,6 +12,7 @@ function Navbar(): JSX.Element {
 	const [scrolled, setScrolled] = useState<boolean>(false);
 	const [showCart, setShowCart] = useState<boolean>(false);
 	const [showSearch, setShowSearch] = useState<boolean>(false);
+	const { cartCount } = useContext(Context);
 
 	const handleScroll = () => {
 		const offset: number = window.scrollY;
@@ -46,7 +48,7 @@ function Navbar(): JSX.Element {
 							className="cart-icon"
 							onClick={() => setShowCart((prev) => !prev)}>
 							<CgShoppingCart />
-							<span>5</span>
+							{cartCount !== 0 && <span>{cartCount}</span>}
 						</span>
 					</div>
 				</div>
