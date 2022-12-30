@@ -8,10 +8,11 @@ import './Cart.scss';
 import CartItem from './CartItem/CartItem';
 
 interface Cart {
+	showCart: boolean;
 	setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Cart({ setShowCart }: Cart): JSX.Element {
+function Cart({ showCart, setShowCart }: Cart): JSX.Element {
 	const { cartItems, cartSubTotal } = useContext(Context);
 
 	const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -32,35 +33,31 @@ function Cart({ setShowCart }: Cart): JSX.Element {
 	};
 
 	return (
-		<div className="cart-panel">
-			<div className="opac-layer"></div>
+		<div className={`cart-panel ${showCart ? 'cart-panel-active' : ''}`}>
 			<div className="cart-content">
 				<div className="cart-header">
-					<span className="heading">Shopping Cart</span>
-					<span className="close-btn" onClick={() => setShowCart(false)}>
+					<h1 className="heading">Shopping bag.</h1>
+					<div className="close-btn" onClick={() => setShowCart(false)}>
 						<MdClose />
-						<span className="text">close</span>
-					</span>
+					</div>
 				</div>
 
 				{!cartItems.length ? (
 					<div className="empty-cart">
-						<BsCartX />
-						<span>No products in the cart.</span>
-						<button className="return-cta">RETURN TO SHOP</button>
+						{/* <BsCartX /> */}
+						<p>Your Bag is empty.</p>
+						{/* <button className="return-cta">RETURN TO SHOP</button> */}
 					</div>
 				) : (
 					<>
 						<CartItem />
 						<div className="cart-footer">
 							<div className="subtotal">
-								<span className="text">Subtotal:</span>
+								<span className="text">Total:</span>
 								<span className="text total">{cartSubTotal}$</span>
 							</div>
-							<div className="button">
-								<button className="checkout-cta" onClick={handlePayment}>
-									Checkout
-								</button>
+							<div className="checkout-button">
+								<button onClick={handlePayment}>Checkout</button>
 							</div>
 						</div>
 					</>

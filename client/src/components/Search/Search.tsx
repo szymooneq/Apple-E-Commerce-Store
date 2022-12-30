@@ -30,7 +30,6 @@ function Search({ setShowSearch }: Search): JSX.Element {
 				<input
 					type="text"
 					placeholder="Search for products"
-					autoFocus
 					value={query}
 					onChange={handleChange}
 				/>

@@ -1,0 +1,105 @@
+@import '../../lib/config/mixins.scss';
+
+.hero-banner {
+	// height: 500px;
+	position: relative;
+
+	/* @include md {
+		height: 636px;
+	} */
+
+	img {
+		pointer-events: none;
+	}
+
+	.content {
+		padding-top: 40px;
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+		justify-content: space-between;
+		height: 100%;
+		overflow: hidden;
+
+		@include md {
+			padding-top: 50px;
+		}
+
+		.text-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			position: relative;
+			z-index: 20;
+
+			.logo {
+				margin-bottom: 20px;
+			}
+
+			h1 {
+				font-size: 32px;
+				font-weight: 500;
+				letter-spacing: -1px;
+
+				@include md {
+					font-size: 48px;
+				}
+
+				@include lg {
+					font-size: 56px;
+				}
+			}
+
+			h2 {
+				font-size: 19px;
+				font-weight: 400;
+				letter-spacing: -1px;
+
+				@include md {
+					font-size: 24px;
+				}
+
+				@include lg {
+					font-size: 28px;
+				}
+			}
+
+			.text-links {
+				margin-top: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				a {
+					display: flex;
+					align-items: center;
+					width: max-content;
+					font-size: 17px;
+					letter-spacing: -0.02rem;
+					color: var(--blue-color);
+
+					@include md {
+						font-size: 19px;
+					}
+
+					@include lg {
+						font-size: 21px;
+					}
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+
+		.banner-img {
+			margin-top: -80px;
+			width: 400px;
+
+			@include md {
+				width: 500px;
+			}
+		}
+	}
+}

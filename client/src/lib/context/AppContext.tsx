@@ -1,19 +1,14 @@
 import { createContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { CategoriesApi } from '../interfaces/interfaces';
 
 interface ContextInterface {
-	categories: any;
-	setCategories: any;
-	products: any;
-	setProducts: any;
+	categories?: CategoriesApi;
+	setCategories?: React.Dispatch<React.SetStateAction<CategoriesApi>>;
+	products?: any;
+	setProducts?: any;
 }
 
-export const Context = createContext<ContextInterface>({
-	categories: [],
-	setCategories: () => {},
-	products: [],
-	setProducts: () => {}
-});
+export const Context = createContext<ContextInterface>(null);
 
 interface AppContextInterface {
 	children: React.ReactNode;

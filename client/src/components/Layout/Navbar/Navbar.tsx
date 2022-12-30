@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { BsHandbag } from 'react-icons/bs';
 import { CgShoppingCart } from 'react-icons/cg';
+import { FaApple } from 'react-icons/fa';
 import { TbSearch } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import { Context } from '../../../lib/context/AppContext';
@@ -31,29 +33,34 @@ function Navbar(): JSX.Element {
 		<>
 			<nav className={`main-navbar ${scrolled ? 'sticky-navbar' : ''}`}>
 				<div className="navbar-content">
-					<ul className="left">
-						<li>
-							<Link to="/">Home</Link>
-						</li>
-						<li>About</li>
-						<li>Categories</li>
-					</ul>
-					<div className="center">
-						<Link to="/">SD Store</Link>
+					<div className="left">
+						<Link to="/">
+							<FaApple />
+						</Link>
 					</div>
+					<ul className="center">
+						<li>Store</li>
+						<li>Mac</li>
+						<li>iPad</li>
+						<li>iPhone</li>
+						<li>Watch</li>
+						<li>AirPods</li>
+					</ul>
 					<div className="right">
-						<TbSearch onClick={() => setShowSearch((prev) => !prev)} />
-						<AiOutlineHeart />
-						<span
-							className="cart-icon"
-							onClick={() => setShowCart((prev) => !prev)}>
-							<CgShoppingCart />
+						<div className="icon">
+							<TbSearch onClick={() => setShowSearch((prev) => !prev)} />
+						</div>
+						<div className="icon" onClick={() => setShowCart((prev) => !prev)}>
+							<BsHandbag />
 							{cartCount !== 0 && <span>{cartCount}</span>}
-						</span>
+						</div>
 					</div>
 				</div>
 			</nav>
-			{showCart && <Cart setShowCart={setShowCart} />}
+			<div
+				className={`opac-layer ${showCart ? 'opac-layer-active' : ''}`}
+				onClick={() => setShowCart(false)}></div>
+			<Cart showCart={showCart} setShowCart={setShowCart} />
 			{showSearch && <Search setShowSearch={setShowSearch} />}
 		</>
 	);

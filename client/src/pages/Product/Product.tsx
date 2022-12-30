@@ -68,10 +68,10 @@ function Product(): JSX.Element {
 						<span className="divider" />
 
 						<div className="info-item">
-							<span className="text-bold">
+							{/* <span className="text-bold">
 								Category:
 								<span> {product.categories.data[0].attributes.title}</span>
-							</span>
+							</span> */}
 							<span className="text-bold">
 								Share:
 								<span className="social-icons">
@@ -85,10 +85,10 @@ function Product(): JSX.Element {
 						</div>
 					</div>
 				</div>
-				<RelatedProducts
+				{/* <RelatedProducts
 					productId={id}
 					categoryId={product.categories.data[0].id}
-				/>
+				/> */}
 			</div>
 		</div>
 	);
