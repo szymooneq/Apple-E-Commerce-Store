@@ -1,48 +1,44 @@
+import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './SectionCard.scss';
 
 interface SectionCard {
-	logo?: string;
-	h1?: string;
-	h2: string;
+	device: string;
+	quote: string;
 	link: string;
-	linkColor: string;
-	textColor: string;
 	img: string;
-	imgAlt: string;
-	bgColor: string;
+	theme: string;
+	children: React.ReactNode;
 }
 
 function SectionCard({
-	logo,
-	h1,
-	h2,
+	device,
+	quote,
 	link,
-	linkColor,
-	textColor,
 	img,
-	imgAlt,
-	bgColor
+	theme,
+	children
 }: SectionCard): JSX.Element {
 	return (
-		<div className="hero-banner" style={{ backgroundColor: bgColor }}>
+		<div className="hero-banner" data-theme={theme}>
 			<div className="content">
-				<div className="text-content" style={{ color: textColor }}>
-					<div className="logo">
+				<div className="text-content">
+					{children}
+					{/* <div className="logo">
 						<img src={logo} alt="" />
 					</div>
-					{h1 && <h1>{h1}</h1>}
-					<h2>{h2}</h2>
+					{h1 && <h1>{h1}</h1>} */}
+					<h2>{quote}</h2>
 					<div className="text-links">
-						<Link to={link} style={{ color: linkColor }}>
+						<Link to={link}>
 							Shop Now
 							<FiChevronRight />
 						</Link>
 					</div>
 				</div>
 				<div className="banner-content">
-					<img className="banner-img" src={img} alt={imgAlt} />
+					<img className="banner-img" src={img} alt={device} />
 				</div>
 			</div>
 		</div>

@@ -8,6 +8,34 @@
 		height: 636px;
 	} */
 
+	&[data-theme='dark'] {
+		background-color: #000000;
+
+		.content {
+			.text-content {
+				color: #ffffff;
+
+				.text-links {
+					color: #2997ff;
+				}
+			}
+		}
+	}
+
+	&[data-theme='light'] {
+		background-color: #fbfbfd;
+
+		.content {
+			.text-content {
+				color: #000000;
+
+				.text-links {
+					color: #0066cc;
+				}
+			}
+		}
+	}
+
 	img {
 		pointer-events: none;
 	}
