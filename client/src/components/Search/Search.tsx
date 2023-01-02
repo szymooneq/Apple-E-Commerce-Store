@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { MdClose } from 'react-icons/md';
+import { TbSearch } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../../lib/hooks/useFetch';
 import './Search.scss';
@@ -33,7 +34,10 @@ function Search({ setShowSearch }: Search): JSX.Element {
 					value={query}
 					onChange={handleChange}
 				/>
-				<MdClose onClick={() => setShowSearch(false)} />
+
+				<div className="close-btn" onClick={() => setShowSearch(false)}>
+					<MdClose />
+				</div>
 			</div>
 			<div className="search-result-content">
 				<div className="search-results">
@@ -56,7 +60,7 @@ function Search({ setShowSearch }: Search): JSX.Element {
 							</div>
 							<div className="prod-details">
 								<span className="name">{item.attributes.title}</span>
-								<span className="desc">{item.attributes.description}</span>
+								{/* <span className="desc">{item.attributes.description}</span> */}
 							</div>
 						</div>
 					))}

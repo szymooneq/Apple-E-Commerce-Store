@@ -23,17 +23,10 @@
 				flex-direction: row;
 			}
 
-			.left {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-shrink: 0;
-				background-color: rgba(0, 0, 0, 0.05);
-
-				@include md {
-					width: 600px;
-					height: 600px;
-				}
+			.right {
+				margin: 0 auto;
+				display: block;
+				width: max-content;
 
 				img {
 					display: block;
@@ -41,33 +34,169 @@
 				}
 			}
 
-			.right {
+			.left {
 				padding-top: 20px;
 				display: flex;
 				flex-direction: column;
+				line-height: 1.7;
 
 				@include md {
 					padding: 0 35px;
 				}
 
+				.new {
+					font-size: 17px;
+					color: #bf4800;
+					letter-spacing: -0.2px;
+				}
+
 				.name {
-					margin-bottom: 20px;
-					font-size: 20px;
-					line-height: 28px;
+					// margin-bottom: 20px;
+					font-size: 24px;
+					font-weight: 600;
+					letter-spacing: -0.5px;
 
 					@include md {
-						font-size: 24px;
-						line-height: 32px;
+						font-size: 32px;
 					}
 				}
 
 				.price {
-					margin-bottom: 20px;
-					font-size: 24px;
-					line-height: 32px;
+					font-size: 17px;
+					font-weight: 400;
 				}
 
-				.desc {
+				.variant {
+					margin: 15px 0;
+					border: none;
+					font-size: 17px;
+					font-weight: 600;
+
+					.variant-list {
+						margin-top: 10px;
+						display: flex;
+						gap: 15px;
+
+						.variant-item {
+							position: relative;
+
+							input[type='radio'] {
+								position: absolute;
+								opacity: 0;
+
+								+ .variant-label {
+									// padding: 5px;
+									position: relative;
+									display: block;
+									width: 42px;
+									height: 42px;
+									border-radius: 50%;
+									cursor: pointer;
+
+									// background-color: green;
+
+									&:before {
+										content: '';
+										border-radius: 50%;
+										background-color: purple;
+										display: block;
+
+										width: 32px;
+										height: 32px;
+										transition: all 250ms ease;
+										position: absolute;
+										top: 50%;
+										left: 50%;
+										transform: translate(-50%, -50%);
+									}
+
+									/* span {
+										display: block;
+										width: 1rem;
+										height: 1rem;
+										background-color: green;
+										position: absolute;
+										top: 0;
+										left: 0;
+										transform: translate(-50%, -50%);
+									} */
+								}
+
+								&:checked {
+									+ .variant-label {
+										border: 2px solid rgb(0, 113, 227);
+										cursor: default;
+									}
+								}
+
+								/* &:focus {
+									+ .variant-label {
+										&:before {
+											outline: none;
+											border-color: red;
+										}
+									}
+								} */
+
+								/* &:disabled {
+									+ .variant-label {
+										&:before {
+											box-shadow: inset 0 0 0 4px blue;
+											border-color: darken(blue, 25%);
+											background: darken(blue, 25%);
+										}
+									}
+								} */
+
+								/* + .variant-label {
+									&:empty {
+										&:before {
+											margin-right: 0;
+										}
+									}
+								} */
+							}
+						}
+					}
+				}
+
+				.delivery {
+					margin-bottom: 20px;
+					letter-spacing: -0.2px;
+					line-height: 1.4;
+
+					.delivery-item {
+						margin: 10px 0;
+						display: flex;
+						gap: 10px;
+
+						ul {
+							font-size: 14px;
+
+							list-style-type: none;
+							font-weight: 600;
+
+							li {
+								font-weight: 400;
+							}
+
+							.link {
+								color: #0066cc;
+
+								&:hover {
+									text-decoration: underline;
+									cursor: pointer;
+								}
+							}
+						}
+					}
+
+					svg {
+						font-size: 20px;
+					}
+				}
+
+				/* .desc {
 					margin-bottom: 20px;
 					font-size: 14px;
 					line-height: 20px;
@@ -77,9 +206,9 @@
 						font-size: 16px;
 						line-height: 24px;
 					}
-				}
+				} */
 
-				.cart-buttons {
+				/* .cart-buttons {
 					display: flex;
 
 					@include md {
@@ -133,6 +262,29 @@
 
 						@include md {
 							flex-grow: unset;
+						}
+					}
+				} */
+
+				.checkout-button {
+					button {
+						padding: 10px 0;
+						width: 100%;
+						font-size: 17px;
+						letter-spacing: -0.2px;
+						color: #ffffff;
+						background-color: #0071e3;
+						border-radius: 12px;
+						border: none;
+						outline: none;
+						cursor: pointer;
+
+						&:hover {
+							background-color: #0077ed;
+						}
+
+						&:active {
+							background-color: #006edb;
 						}
 					}
 				}

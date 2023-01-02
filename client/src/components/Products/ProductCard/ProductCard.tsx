@@ -19,9 +19,10 @@ function ProductCard({ id, data }: ProductCard): JSX.Element {
 					alt={data.image.data[0].attributes.alternativeText}
 				/>
 			</div>
-			<div className="produ-details">
+			<div className="prod-details">
+				<div className="new">New</div>
 				<div className="name">{data.title}</div>
-				<div className="price">{data.price}$</div>
+				<div className="price">${data.price}</div>
 			</div>
 		</Link>
 	);

@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { AiOutlineHeart } from 'react-icons/ai';
 import { BsHandbag } from 'react-icons/bs';
-import { CgShoppingCart } from 'react-icons/cg';
 import { FaApple } from 'react-icons/fa';
 import { TbSearch } from 'react-icons/tb';
 import { Link } from 'react-router-dom';

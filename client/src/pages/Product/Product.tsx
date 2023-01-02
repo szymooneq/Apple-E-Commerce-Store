@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { BsBagCheck, BsTruck } from 'react-icons/bs';
 import {
 	FaCartPlus,
 	FaFacebookF,
@@ -7,7 +8,7 @@ import {
 	FaPinterest,
 	FaTwitter
 } from 'react-icons/fa';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import RelatedProducts from '../../components/Products/RelatedProducts/RelatedProducts';
 import { Context } from '../../lib/context/AppContext';
 import useFetch from '../../lib/hooks/useFetch';
@@ -35,43 +36,88 @@ function Product(): JSX.Element {
 			<div className="layout">
 				<div className="single-product-page">
 					<div className="left">
-						<img
-							src={
-								import.meta.env.VITE_STRIPE_APP_DEV_URL +
-								product.image.data[0].attributes.url
-							}
-							alt={product.image.data[0].attributes.alternativeText}
-						/>
-					</div>
-					<div className="right">
-						<span className="name">{product.title}</span>
-						<span className="price">{product.price}</span>
-						<span className="desc">{product.description}</span>
+						<div className="new">New</div>
+						<div className="name">{product.title}</div>
+						<div className="price">${product.price}</div>
+						{/* <div className="desc">{product.description}</div> */}
 
-						<div className="cart-buttons">
-							<div className="quantity-buttons">
+						<fieldset className="variant">
+							<legend>Color - Deep Purple</legend>
+							<div className="variant-list">
+								<div className="variant-item">
+									<input type="radio" id="purple" name="color" value="purple" />
+									<label className="variant-label" htmlFor="purple">
+										<span></span>
+									</label>
+								</div>
+								<div className="variant-item">
+									<input type="radio" id="black" name="color" value="black" />
+									<label className="variant-label" htmlFor="black">
+										<span></span>
+									</label>
+								</div>
+								<div className="variant-item">
+									<input type="radio" id="silver" name="color" value="silver" />
+									<label className="variant-label" htmlFor="silver">
+										<span></span>
+									</label>
+								</div>
+								<div className="variant-item">
+									<input type="radio" id="gold" name="color" value="gold" />
+									<label className="variant-label" htmlFor="gold">
+										<span></span>
+									</label>
+								</div>
+							</div>
+						</fieldset>
+
+						<div className="delivery">
+							<div className="delivery-item">
+								<BsTruck />
+								<div className="delivery-info">
+									<ul>
+										Delivery
+										<li>In Stock</li>
+										<li>Free Shipping</li>
+										<li className="link">Get delivery dates</li>
+									</ul>
+								</div>
+							</div>
+							<div className="delivery-item">
+								<BsBagCheck />
+								<div className="delivery-info">
+									<ul>
+										Pickup
+										<li className="link">Check availability</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div className="checkout-button">
+							{/* <div className="quantity-buttons">
 								<span onClick={decrement}>-</span>
 								<span>{quantity}</span>
 								<span onClick={increment}>+</span>
-							</div>
+							</div> */}
 							<button
 								className="add-to-cart-button"
 								onClick={() => {
 									handleAddToCart(data.data[0], quantity);
 									setQuantity(1);
 								}}>
-								<FaCartPlus size={20} />
-								ADD TO CART
+								{/* <FaCartPlus size={20} /> */}
+								Add to Bag
 							</button>
 						</div>
 
-						<span className="divider" />
+						{/* <span className="divider" /> */}
 
-						<div className="info-item">
-							{/* <span className="text-bold">
+						{/* <div className="info-item">
+							<span className="text-bold">
 								Category:
 								<span> {product.categories.data[0].attributes.title}</span>
-							</span> */}
+							</span>
 							<span className="text-bold">
 								Share:
 								<span className="social-icons">
@@ -82,7 +128,16 @@ function Product(): JSX.Element {
 									<FaPinterest size={16} />
 								</span>
 							</span>
-						</div>
+						</div> */}
+					</div>
+					<div className="right">
+						<img
+							src={
+								import.meta.env.VITE_STRIPE_APP_DEV_URL +
+								product.image.data[0].attributes.url
+							}
+							alt={product.image.data[0].attributes.alternativeText}
+						/>
 					</div>
 				</div>
 				{/* <RelatedProducts

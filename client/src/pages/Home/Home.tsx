@@ -33,7 +33,7 @@ function Home(): JSX.Element {
 			<SectionCollection />
 			<div className="main-content">
 				<div className="layout">
-					<Categories categories={categories} />
+					{/* <Categories categories={categories} /> */}
 					<Products products={products} headingText="Popular Products" />
 				</div>
 			</div>
