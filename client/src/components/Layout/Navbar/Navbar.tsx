@@ -14,6 +14,15 @@ function Navbar(): JSX.Element {
 	const [showSearch, setShowSearch] = useState<boolean>(false);
 	const { cartCount } = useContext(Context);
 
+	const navLinks = [
+		{ name: 'Store', path: '/store' },
+		{ name: 'Mac', path: '/category/mac' },
+		{ name: 'iPad', path: '/category/ipad' },
+		{ name: 'iPhone', path: '/category/iphone' },
+		{ name: 'Watch', path: '/category/apple-watch' },
+		{ name: 'AirPods', path: '/category/airpods' }
+	];
+
 	const handleScroll = () => {
 		const offset: number = window.scrollY;
 		if (offset > 200) {
@@ -37,12 +46,11 @@ function Navbar(): JSX.Element {
 						</Link>
 					</div>
 					<ul className="center">
-						<li>Store</li>
-						<li>Mac</li>
-						<li>iPad</li>
-						<li>iPhone</li>
-						<li>Watch</li>
-						<li>AirPods</li>
+						{navLinks.map((link) => (
+							<li>
+								<Link to={link.path}>{link.name}</Link>
+							</li>
+						))}
 					</ul>
 					<div className="right">
 						<div className="icon">

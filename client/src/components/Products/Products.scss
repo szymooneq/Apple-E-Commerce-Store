@@ -9,18 +9,19 @@
 
 	padding: 0 25px;
 
-	.sec-heading {
-		margin-bottom: 20px;
-		font-size: 18px;
-		font-weight: 500;
-		text-transform: uppercase;
+	.products-header {
+		margin-bottom: 50px;
+		font-size: 32px;
+		font-weight: 600;
+		letter-spacing: -0.5px;
+		color: rgb(29, 29, 31);
 
 		@include md {
-			margin-bottom: 35px;
-			font-size: 24px;
+			margin-bottom: 75px;
+			font-size: 48px;
 		}
 
-		&:after {
+		/* &:after {
 			content: '';
 			margin-top: 5px;
 			display: block;
@@ -31,6 +32,29 @@
 			@include md {
 				margin-top: 10px;
 			}
+		} */
+	}
+
+	.products-info {
+		margin-bottom: 30px;
+		display: inline-flex;
+		align-items: center;
+		font-size: 24px;
+		font-weight: 600;
+		letter-spacing: -0.2px;
+
+		@include md {
+			font-size: 28px;
+		}
+
+		h2 {
+			font-size: inherit;
+			font-weight: inherit;
+			color: rgb(29, 29, 31);
+		}
+
+		span {
+			color: rgb(110, 110, 115);
 		}
 	}
 

@@ -20,7 +20,7 @@ function ProductCard({ id, data }: ProductCard): JSX.Element {
 				/>
 			</div>
 			<div className="prod-details">
-				<div className="new">New</div>
+				{data.isNew && <div className="new">New</div>}
 				<div className="name">{data.title}</div>
 				<div className="price">${data.price}</div>
 			</div>

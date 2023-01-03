@@ -6,7 +6,7 @@ import './Category.scss';
 function Category(): JSX.Element {
 	const { id } = useParams();
 	const { data } = useFetch(
-		`/api/products?populate=*&[filters][categories][id]=${id}`
+		`/api/products?populate=*&[filters][category][slug]=${id}`
 	);
 
 	return (
@@ -18,7 +18,7 @@ function Category(): JSX.Element {
 							?.title
 					}
 				</div>
-				{data && <Products innerPage={true} products={data} />}
+				{data && <Products products={data} headingText="Shop iPhone" />}
 			</div>
 		</div>
 	);

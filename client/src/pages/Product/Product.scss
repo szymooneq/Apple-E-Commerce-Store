@@ -24,13 +24,12 @@
 			}
 
 			.right {
+				display: none;
 				margin: 0 auto;
-				display: block;
 				width: max-content;
 
-				img {
-					display: block;
-					width: 100%;
+				@include md {
+					display: flex;
 				}
 			}
 
@@ -42,6 +41,7 @@
 
 				@include md {
 					padding: 0 35px;
+					min-width: 400px;
 				}
 
 				.new {
@@ -64,6 +64,17 @@
 				.price {
 					font-size: 17px;
 					font-weight: 400;
+				}
+
+				.mobile-image {
+					margin-bottom: 40px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					@include md {
+						display: none;
+					}
 				}
 
 				.variant {
@@ -95,10 +106,23 @@
 
 									// background-color: green;
 
-									&:before {
+									/* &:before {
 										content: '';
 										border-radius: 50%;
 										background-color: purple;
+										display: block;
+
+										width: 32px;
+										height: 32px;
+										transition: all 250ms ease;
+										position: absolute;
+										top: 50%;
+										left: 50%;
+										transform: translate(-50%, -50%);
+									} */
+
+									.palette {
+										border-radius: 50%;
 										display: block;
 
 										width: 32px;

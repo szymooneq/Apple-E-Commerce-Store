@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_product_variants",
+  "info": {
+    "displayName": "Color",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "colorCode": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "value": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    }
+  }
+}

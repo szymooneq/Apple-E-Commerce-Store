@@ -3,15 +3,18 @@ import ProductCard from './ProductCard/ProductCard';
 import './Products.scss';
 
 interface Products {
-	innerPage?: boolean;
 	headingText?: string;
 	products: ProductApi;
 }
 
-function Products({ innerPage, headingText, products }: Products): JSX.Element {
+function Products({ headingText, products }: Products): JSX.Element {
 	return (
 		<div className="products-container">
-			{/* {!innerPage && <div className="sec-heading">{headingText}</div>} */}
+			<h1 className="products-header">{headingText}</h1>
+			<div className="products-info">
+				<h2>All models.</h2>
+				<span>Take your pick.</span>
+			</div>
 			<div className="products">
 				{products?.data?.map((item) => (
 					<ProductCard key={item.id} id={item.id} data={item.attributes} />
