@@ -2,6 +2,7 @@
 
 .single-product-main-content {
 	margin: 20px 0;
+	color: rgb(29, 29, 31);
 
 	@include md {
 		margin: 75px 0;
@@ -9,7 +10,7 @@
 
 	.layout {
 		margin: 0 auto;
-		max-width: calc(100% - 20px);
+		max-width: calc(100% - 50px);
 
 		@include md {
 			max-width: 1200px;
@@ -82,6 +83,7 @@
 					border: none;
 					font-size: 17px;
 					font-weight: 600;
+					letter-spacing: -0.5px;
 
 					.variant-list {
 						margin-top: 10px;
@@ -341,6 +343,22 @@
 							margin: 0 5px;
 						}
 					}
+				}
+			}
+		}
+
+		.recommendations {
+			margin: 100px 0;
+
+			.recommendations-header {
+				margin-bottom: 50px;
+				text-align: center;
+				font-size: 28px;
+				font-weight: 600;
+				letter-spacing: -0.5px;
+
+				@include md {
+					font-size: 40px;
 				}
 			}
 		}

@@ -4,9 +4,9 @@ import useFetch from '../../lib/hooks/useFetch';
 import './Category.scss';
 
 function Category(): JSX.Element {
-	const { id } = useParams();
+	const { categoryName } = useParams();
 	const { data } = useFetch(
-		`/api/products?populate=*&[filters][category][slug]=${id}`
+		`/api/products?populate=*&[filters][category][slug]=${categoryName}`
 	);
 
 	return (
@@ -18,7 +18,7 @@ function Category(): JSX.Element {
 							?.title
 					}
 				</div>
-				{data && <Products products={data} headingText="Shop iPhone" />}
+				{data && <Products products={data} header="Shop iPhone" />}
 			</div>
 		</div>
 	);

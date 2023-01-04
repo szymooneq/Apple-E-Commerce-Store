@@ -20,7 +20,7 @@ function SectionCollection(): JSX.Element {
 					theme="dark"
 					device="iPhone 14 Pro"
 					quote="Pro. Beyond."
-					link="/"
+					link="/product/iphone-14-pro"
 					img={iPhone14ProHeader}>
 					<h1>iPhone 14 Pro</h1>
 				</SectionCard>
@@ -29,7 +29,7 @@ function SectionCollection(): JSX.Element {
 					theme="light"
 					device="iPhone 14"
 					quote="Big and bigger."
-					link="/"
+					link="/product/iphone-14"
 					img={iPhone14Header}>
 					<h1>iPhone 14</h1>
 				</SectionCard>
@@ -38,7 +38,7 @@ function SectionCollection(): JSX.Element {
 					theme="dark"
 					device="AirPods Pro"
 					quote="Rebuilt from the sound up."
-					link="/"
+					link="/product/airpods-pro-2nd"
 					img={AirpodsHeader}>
 					<h1>AirPods Pro</h1>
 				</SectionCard>
@@ -49,7 +49,7 @@ function SectionCollection(): JSX.Element {
 					theme="light"
 					device="Watch Ultra"
 					quote="Adventure awaits"
-					link="/"
+					link="/product/apple-watch-ultra"
 					img={WatchUltraHeader}>
 					<div className="logo">
 						<img src={WatchUltraLogoHeader} alt="Watch Ultra Logo" />
@@ -60,7 +60,7 @@ function SectionCollection(): JSX.Element {
 					theme="dark"
 					device="Watch Series 8"
 					quote="A healthy leap ahead"
-					link="/"
+					link="/product/apple-watch-8"
 					img={WatchSeries8Header}>
 					<div className="logo">
 						<img src={WatchSeries8LogoHeader} alt="Watch Series 8 Logo" />
@@ -71,7 +71,7 @@ function SectionCollection(): JSX.Element {
 					theme="light"
 					device="MacBook Air"
 					quote="Supercharged by M2"
-					link="/"
+					link="/product/macbook-air-13-6-m2"
 					img={MacBookAirHeader}>
 					<h1>MacBook Air</h1>
 				</SectionCard>
@@ -80,7 +80,7 @@ function SectionCollection(): JSX.Element {
 					theme="light"
 					device="iPad"
 					quote="Lovable. Drawable. Magical."
-					link="/"
+					link="/product/ipad-10-9"
 					img={iPadHeader}>
 					<h1>iPad</h1>
 				</SectionCard>

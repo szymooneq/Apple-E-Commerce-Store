@@ -1,16 +1,17 @@
 @import '../../lib/config/mixins.scss';
 
 .cart-panel {
+	width: 100%;
+	height: 100%;
 	position: fixed;
 	top: 0;
 	right: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 200 !important;
+	color: rgb(29, 29, 31);
 	transform: translateX(100%);
 	transition: transform 0.3s ease;
+	z-index: 200 !important;
 
-	&.cart-panel-active {
+	&[data-open='true'] {
 		transform: translateX(0);
 	}
 
@@ -35,9 +36,8 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			// border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-			.heading {
+			h1 {
 				font-size: 24px;
 				font-weight: 600;
 				letter-spacing: -0.2px;
@@ -59,56 +59,49 @@
 
 		.empty-cart {
 			display: flex;
-			flex-direction: row;
 			align-items: center;
 			justify-content: center;
-			gap: 20px;
 			height: 100vh;
-
-			svg {
-				font-size: 120px;
-				opacity: 0.1;
-			}
 
 			p {
 				color: #6e6e73;
-				letter-spacing: -0.2px;
+				letter-spacing: -0.5px;
 			}
-
-			/* .return-cta {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 150px;
-				height: 40px;
-				font-size: 13px;
-				color: #ffffff;
-				background-color: #8e2de2;
-				border: none;
-				outline: none;
-				border-bottom: 3px solid #6516aa;
-				cursor: pointer;
-			} */
 		}
 
 		.cart-footer {
-			// border-top: 1px solid rgba(0, 0, 0, 0.1);
+			margin: 20px 15px;
 
 			.subtotal {
-				padding: 20px 15px;
-				display: flex;
-				justify-content: space-between;
-				// border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				padding: 15px 0;
+				font-size: 17px;
+				letter-spacing: -0.5px;
+				border-top: 1px solid #d2d2d7;
+				border-bottom: 1px solid #d2d2d7;
 
-				.text {
-					margin-bottom: 0;
-					font-size: 24px;
-					font-weight: 600;
+				.subtotal-item {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					&:nth-child(1) {
+						margin-bottom: 5px;
+					}
 				}
 			}
 
+			.total {
+				margin-top: 15px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				font-size: 21px;
+				letter-spacing: -0.5px;
+				font-weight: 600;
+			}
+
 			.checkout-button {
-				padding: 20px 15px;
+				margin-top: 20px;
 
 				button {
 					padding: 15px 0;

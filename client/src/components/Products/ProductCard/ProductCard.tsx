@@ -9,7 +9,7 @@ interface ProductCard {
 
 function ProductCard({ id, data }: ProductCard): JSX.Element {
 	return (
-		<Link to={`/product/${id}`} className="product-card">
+		<Link to={`/product/${data.slug}`} className="product-card">
 			<div className="thumbnail">
 				<img
 					src={

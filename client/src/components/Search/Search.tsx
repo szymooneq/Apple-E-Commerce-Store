@@ -45,7 +45,7 @@ function Search({ setShowSearch }: Search): JSX.Element {
 						<div
 							key={item.id}
 							onClick={() => {
-								navigate(`/product/${item.id}`);
+								navigate(`/product/${item.attributes.slug}`);
 								setShowSearch(false);
 							}}
 							className="search-result-item">

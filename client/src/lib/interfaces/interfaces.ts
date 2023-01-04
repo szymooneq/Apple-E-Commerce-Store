@@ -1,63 +1,25 @@
-interface ApiImg {
+export interface cartItem {
 	id: number;
-	attributes: {
-		alternativeText: string;
-		width: number;
-		height: number;
-		url: string;
-	};
-}
-
-export interface Category {
-	id: number;
-	attributes: {
-		title: string;
-		createdAt: string;
-		updatedAt: string;
-		publishedAt: string;
-		image: {
-			data: ApiImg;
-		};
-		products: {
-			data: Array<Product>;
-		};
-	};
-}
-
-export interface Product {
-	id: number;
-	attributes: {
-		title: string;
-		description: string;
-		price: number;
-		createdAt: string;
-		updatedAt: string;
-		publishedAt: string;
-		image: {
-			data: Array<ApiImg>;
-		};
-		categories: {
-			data: Array<Category>;
-		};
-	};
-}
-
-export interface ProductData {
 	title: string;
-	description: string;
+	slug: string;
 	price: number;
-	image: {
-		data: Array<ApiImg>;
-	};
-	categories: {
-		data: Array<Category>;
-	};
+	createdAt: string;
+	publishedAt: string;
+	updatedAt: string;
+	isNew: boolean;
+	color: string;
+	colorCode: string;
+	image: cartItemImage;
+	quantity: number;
 }
 
-export interface CategoriesApi {
-	data: Array<Category>;
+interface cartItemImage {
+	alternativeText: string;
+	url: string;
 }
 
-export interface ProductApi {
-	data: Array<Product>;
+export interface cartState {
+	cartItems: cartItem[];
+	cartCount: number;
+	cartSubTotal: number;
 }

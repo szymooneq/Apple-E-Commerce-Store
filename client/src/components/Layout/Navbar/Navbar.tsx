@@ -15,12 +15,12 @@ function Navbar(): JSX.Element {
 	const { cartCount } = useContext(Context);
 
 	const navLinks = [
-		{ name: 'Store', path: '/store' },
-		{ name: 'Mac', path: '/category/mac' },
-		{ name: 'iPad', path: '/category/ipad' },
-		{ name: 'iPhone', path: '/category/iphone' },
-		{ name: 'Watch', path: '/category/apple-watch' },
-		{ name: 'AirPods', path: '/category/airpods' }
+		{ name: 'Home', path: '/' },
+		{ name: 'Mac', path: '/mac' },
+		{ name: 'iPad', path: '/ipad' },
+		{ name: 'iPhone', path: '/iphone' },
+		{ name: 'Watch', path: '/apple-watch' },
+		{ name: 'AirPods', path: '/airpods' }
 	];
 
 	const handleScroll = () => {
@@ -47,7 +47,7 @@ function Navbar(): JSX.Element {
 					</div>
 					<ul className="center">
 						{navLinks.map((link) => (
-							<li>
+							<li key={link.name}>
 								<Link to={link.path}>{link.name}</Link>
 							</li>
 						))}

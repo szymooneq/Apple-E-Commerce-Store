@@ -16,15 +16,25 @@ module.exports = createCoreController("api::order.order", ({ strapi }) => ({
             .service("api::product.product")
             .findOne(product.id);
 
+          console.log(product.image.url);
+
+          const newImage =
+            "http://localhost:1337/uploads/i_Phone14_Red_548bcb2c36.png";
+
           return {
             price_data: {
-              currency: "pln",
+              currency: "usd",
               product_data: {
-                name: item.title,
+                name: `${item.title} - ${product.color}`,
+                images: [newImage],
               },
               unit_amount: Math.round(item.price * 100),
             },
-            quantity: product.attributes.quantity,
+            /* adjustable_quantity: {
+              enabled: true,
+              minimum: 1,
+            }, */
+            quantity: product.quantity,
           };
         })
       );

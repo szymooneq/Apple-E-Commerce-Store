@@ -1,13 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { BsBagCheck, BsTruck } from 'react-icons/bs';
-import {
-	FaCartPlus,
-	FaFacebookF,
-	FaInstagram,
-	FaLinkedinIn,
-	FaPinterest,
-	FaTwitter
-} from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import RelatedProducts from '../../components/Products/RelatedProducts/RelatedProducts';
 import { Context } from '../../lib/context/AppContext';
@@ -19,9 +11,10 @@ function Product(): JSX.Element {
 	const [variant, setVariant] = useState(1);
 	const { id } = useParams();
 	const { data } = useFetch(
-		`/api/products?populate[variants][populate]=*&[filters][id]=${id}`,
+		`/api/products?populate[variants][populate]=*&populate[category]=*&[filters][slug]=${id}`,
 		setVariant
 	);
+
 	const { handleAddToCart } = useContext(Context);
 
 	/* 	const decrement = () => {
@@ -49,13 +42,12 @@ function Product(): JSX.Element {
 	if (!data) return;
 	const product = data.data[0].attributes;
 
-	// console.log(product.variants[0]);
+	// console.log(product);
 
 	return (
 		data &&
 		variant && (
 			<div className="single-product-main-content">
-				{console.log(variant)}
 				<div className="layout">
 					<div className="single-product-page">
 						<div className="left">
@@ -84,7 +76,7 @@ function Product(): JSX.Element {
 												name="color"
 												value={item.value}
 												onClick={handleVariantChange}
-												checked={item.value === variant.value}
+												defaultChecked={item.value === variant.value}
 											/>
 											<label className="variant-label" htmlFor={item.value}>
 												<div
@@ -123,7 +115,7 @@ function Product(): JSX.Element {
 								<button
 									className="add-to-cart-button"
 									onClick={() => {
-										handleAddToCart(data.data[0], quantity);
+										handleAddToCart(data.data[0], variant);
 										setQuantity(1);
 									}}>
 									{/* <FaCartPlus size={20} /> */}
@@ -141,10 +133,13 @@ function Product(): JSX.Element {
 							/>
 						</div>
 					</div>
-					{/* <RelatedProducts
-					productId={id}
-					categoryId={product.categories.data[0].id}
-				/> */}
+					<div className="recommendations">
+						<h2 className="recommendations-header">You may also like</h2>
+						<RelatedProducts
+							productId={product.slug}
+							categoryId={product.category.data.id}
+						/>
+					</div>
 				</div>
 			</div>
 		)

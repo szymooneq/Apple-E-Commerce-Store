@@ -12,11 +12,11 @@ function RelatedProducts({
 	categoryId
 }: RelatedProducts): JSX.Element {
 	const { data } = useFetch(
-		`/api/products?populate=*&filters[id][$ne]=${productId}&filters[categories][id]=${categoryId}&pagination[start]=0&pagination[limit]=4`
+		`/api/products?populate=*&filters[slug][$ne]=${productId}&filters[category][id]=${categoryId}&pagination[start]=0&pagination[limit]=4`
 	);
 	return (
 		<div className="related-products">
-			{data && <Products products={data} headingText="Related Products" />}
+			{data && <Products products={data} />}
 		</div>
 	);
 }

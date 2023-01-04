@@ -1,18 +1,17 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { useContext } from 'react';
-import { BsCartX } from 'react-icons/bs';
 import { MdClose } from 'react-icons/md';
 import { makePaymentRequest } from '../../lib/api/api';
 import { Context } from '../../lib/context/AppContext';
 import './Cart.scss';
-import CartItem from './CartItem/CartItem';
+import CartItems from './CartItems/CartItems';
 
-interface Cart {
+interface props {
 	showCart: boolean;
 	setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Cart({ showCart, setShowCart }: Cart): JSX.Element {
+function Cart({ showCart, setShowCart }: props): JSX.Element {
 	const { cartItems, cartSubTotal } = useContext(Context);
 
 	const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
@@ -33,10 +32,10 @@ function Cart({ showCart, setShowCart }: Cart): JSX.Element {
 	};
 
 	return (
-		<div className={`cart-panel ${showCart ? 'cart-panel-active' : ''}`}>
+		<div className="cart-panel" data-open={showCart}>
 			<div className="cart-content">
 				<div className="cart-header">
-					<h1 className="heading">Shopping bag.</h1>
+					<h1>Shopping bag.</h1>
 					<div className="close-btn" onClick={() => setShowCart(false)}>
 						<MdClose />
 					</div>
@@ -44,17 +43,26 @@ function Cart({ showCart, setShowCart }: Cart): JSX.Element {
 
 				{!cartItems.length ? (
 					<div className="empty-cart">
-						{/* <BsCartX /> */}
 						<p>Your Bag is empty.</p>
-						{/* <button className="return-cta">RETURN TO SHOP</button> */}
 					</div>
 				) : (
 					<>
-						<CartItem />
+						<CartItems />
 						<div className="cart-footer">
 							<div className="subtotal">
-								<span className="text">Total:</span>
-								<span className="text total">{cartSubTotal}$</span>
+								<div className="subtotal-item">
+									<div>Subtotal</div>
+									<div>${cartSubTotal}</div>
+								</div>
+								<div className="subtotal-item">
+									<div>Shipping</div>
+									<div>FREE</div>
+								</div>
+							</div>
+
+							<div className="total">
+								<div>Total:</div>
+								<div>${cartSubTotal}</div>
 							</div>
 							<div className="checkout-button">
 								<button onClick={handlePayment}>Checkout</button>
