@@ -4,21 +4,19 @@ import useFetch from '../../lib/hooks/useFetch';
 import './Category.scss';
 
 function Category(): JSX.Element {
-	const { categoryName } = useParams();
+	const { category } = useParams();
 	const { data } = useFetch(
-		`/api/products?populate=*&[filters][category][slug]=${categoryName}`
+		`/api/products?populate=*&[filters][category][slug]=${category}`
 	);
+
+	if (!data) return null;
+
+	const categoryName = data.data[0].attributes.category.data.attributes.name;
 
 	return (
 		<div className="category-main-content">
 			<div className="layout">
-				<div className="category-title">
-					{
-						data?.data?.[0]?.attributes?.categories?.data?.[0]?.attributes
-							?.title
-					}
-				</div>
-				{data && <Products products={data} header="Shop iPhone" />}
+				<Products products={data} header={`Shop ${categoryName}`} />
 			</div>
 		</div>
 	);

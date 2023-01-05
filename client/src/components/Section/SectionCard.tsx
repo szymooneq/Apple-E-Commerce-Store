@@ -3,7 +3,7 @@ import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 import './SectionCard.scss';
 
-interface SectionCard {
+interface props {
 	device: string;
 	quote: string;
 	link: string;
@@ -19,16 +19,12 @@ function SectionCard({
 	img,
 	theme,
 	children
-}: SectionCard): JSX.Element {
+}: props): JSX.Element {
 	return (
 		<div className="hero-banner" data-theme={theme}>
 			<div className="content">
 				<div className="text-content">
 					{children}
-					{/* <div className="logo">
-						<img src={logo} alt="" />
-					</div>
-					{h1 && <h1>{h1}</h1>} */}
 					<h2>{quote}</h2>
 					<div className="text-links">
 						<Link to={link}>

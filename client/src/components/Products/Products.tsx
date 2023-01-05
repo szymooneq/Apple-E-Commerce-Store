@@ -1,13 +1,15 @@
-import { ProductApi } from '../../lib/interfaces/interfaces';
+import { product } from '../../lib/interfaces/product';
 import ProductCard from './ProductCard/ProductCard';
 import './Products.scss';
 
-interface Products {
+interface props {
 	header?: string;
-	products: ProductApi;
+	products: {
+		data: product[];
+	};
 }
 
-function Products({ header, products }: Products): JSX.Element {
+function Products({ header, products }: props): JSX.Element {
 	return (
 		<div className="products-container">
 			{header && (
@@ -21,8 +23,8 @@ function Products({ header, products }: Products): JSX.Element {
 			)}
 
 			<div className="products">
-				{products?.data?.map((item) => (
-					<ProductCard key={item.id} id={item.id} data={item.attributes} />
+				{products.data.map((product) => (
+					<ProductCard key={product.id} product={product} />
 				))}
 			</div>
 		</div>

@@ -2,7 +2,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useContext } from 'react';
 import { MdClose } from 'react-icons/md';
 import { makePaymentRequest } from '../../lib/api/api';
-import { Context } from '../../lib/context/AppContext';
+import { CartContext } from '../../lib/context/CartContext';
 import './Cart.scss';
 import CartItems from './CartItems/CartItems';
 
@@ -12,7 +12,7 @@ interface props {
 }
 
 function Cart({ showCart, setShowCart }: props): JSX.Element {
-	const { cartItems, cartSubTotal } = useContext(Context);
+	const { cartState } = useContext(CartContext);
 
 	const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -20,7 +20,7 @@ function Cart({ showCart, setShowCart }: props): JSX.Element {
 		try {
 			const stripe = await stripePromise;
 			const res = await makePaymentRequest.post('/api/orders', {
-				products: cartItems
+				products: cartState.cartItems
 			});
 
 			await stripe?.redirectToCheckout({
@@ -41,7 +41,7 @@ function Cart({ showCart, setShowCart }: props): JSX.Element {
 					</div>
 				</div>
 
-				{!cartItems.length ? (
+				{!cartState.cartItems.length ? (
 					<div className="empty-cart">
 						<p>Your Bag is empty.</p>
 					</div>
@@ -52,7 +52,7 @@ function Cart({ showCart, setShowCart }: props): JSX.Element {
 							<div className="subtotal">
 								<div className="subtotal-item">
 									<div>Subtotal</div>
-									<div>${cartSubTotal}</div>
+									<div>${cartState.cartSubTotal}</div>
 								</div>
 								<div className="subtotal-item">
 									<div>Shipping</div>
@@ -62,7 +62,7 @@ function Cart({ showCart, setShowCart }: props): JSX.Element {
 
 							<div className="total">
 								<div>Total:</div>
-								<div>${cartSubTotal}</div>
+								<div>${cartState.cartSubTotal}</div>
 							</div>
 							<div className="checkout-button">
 								<button onClick={handlePayment}>Checkout</button>

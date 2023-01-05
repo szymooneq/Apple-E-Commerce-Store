@@ -1,38 +1,28 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { BsBagCheck, BsTruck } from 'react-icons/bs';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import RelatedProducts from '../../components/Products/RelatedProducts/RelatedProducts';
-import { Context } from '../../lib/context/AppContext';
+import { CartContext } from '../../lib/context/CartContext';
 import useFetch from '../../lib/hooks/useFetch';
+import { productVariant } from '../../lib/interfaces/product';
 import './Product.scss';
 
 function Product(): JSX.Element {
-	const [quantity, setQuantity] = useState(1);
-	const [variant, setVariant] = useState(1);
+	const [variant, setVariant] = useState({} as productVariant);
 	const { id } = useParams();
 	const { data } = useFetch(
 		`/api/products?populate[variants][populate]=*&populate[category]=*&[filters][slug]=${id}`,
 		setVariant
 	);
 
-	const { handleAddToCart } = useContext(Context);
+	const { addToCart } = useContext(CartContext);
 
-	/* 	const decrement = () => {
-		setQuantity((prev) => (prev === 1 ? 1 : prev - 1));
-	};
-
-	const increment = () => {
-		setQuantity((prev) => prev + 1);
-	}; */
-
-	const handleVariantChange = (e: Event) => {
-		// console.log(e.target.value);
-
+	const handleVariantChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (variant.value === e.target.value) {
 			return;
 		}
 
-		product.variants.map((variant, id) => {
+		product.variants.map((variant: productVariant, id: number) => {
 			if (variant.value === e.target.value) {
 				setVariant(product.variants[id]);
 			}
@@ -41,8 +31,6 @@ function Product(): JSX.Element {
 
 	if (!data) return;
 	const product = data.data[0].attributes;
-
-	// console.log(product);
 
 	return (
 		data &&
@@ -68,15 +56,15 @@ function Product(): JSX.Element {
 							<fieldset className="variant">
 								<legend>Color - {variant.displayName}</legend>
 								<div className="variant-list">
-									{product.variants.map((item) => (
+									{product.variants.map((item: productVariant) => (
 										<div key={item.value} className="variant-item">
 											<input
 												type="radio"
 												id={item.value}
 												name="color"
 												value={item.value}
-												onClick={handleVariantChange}
-												defaultChecked={item.value === variant.value}
+												onChange={(e) => handleVariantChange(e)}
+												checked={item.value === variant.value}
 											/>
 											<label className="variant-label" htmlFor={item.value}>
 												<div
@@ -115,10 +103,8 @@ function Product(): JSX.Element {
 								<button
 									className="add-to-cart-button"
 									onClick={() => {
-										handleAddToCart(data.data[0], variant);
-										setQuantity(1);
+										addToCart(data.data[0], variant);
 									}}>
-									{/* <FaCartPlus size={20} /> */}
 									Add to Bag
 								</button>
 							</div>

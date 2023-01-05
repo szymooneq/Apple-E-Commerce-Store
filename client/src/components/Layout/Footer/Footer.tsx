@@ -1,14 +1,5 @@
-import {
-	FaApplePay,
-	FaCcPaypal,
-	FaCcVisa,
-	FaEnvelope,
-	FaLocationArrow,
-	FaMobileAlt,
-	FaStripe
-} from 'react-icons/fa';
+import { FaApplePay, FaCcPaypal, FaCcVisa, FaStripe } from 'react-icons/fa';
 import { SiMastercard } from 'react-icons/si';
-// import Payments from '../../../assets/payments.png';
 import './Footer.scss';
 
 function Footer(): JSX.Element {
@@ -74,7 +65,6 @@ function Footer(): JSX.Element {
 						<SiMastercard />
 						<FaCcPaypal />
 					</div>
-					{/* <img src={Payments} alt="Payments" /> */}
 				</div>
 			</div>
 		</div>

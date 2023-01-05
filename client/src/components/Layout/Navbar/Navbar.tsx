@@ -3,7 +3,7 @@ import { BsHandbag } from 'react-icons/bs';
 import { FaApple } from 'react-icons/fa';
 import { TbSearch } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
-import { Context } from '../../../lib/context/AppContext';
+import { CartContext } from '../../../lib/context/CartContext';
 import Cart from '../../Cart/Cart';
 import Search from '../../Search/Search';
 import './Navbar.scss';
@@ -12,7 +12,7 @@ function Navbar(): JSX.Element {
 	const [scrolled, setScrolled] = useState<boolean>(false);
 	const [showCart, setShowCart] = useState<boolean>(false);
 	const [showSearch, setShowSearch] = useState<boolean>(false);
-	const { cartCount } = useContext(Context);
+	const { cartState } = useContext(CartContext);
 
 	const navLinks = [
 		{ name: 'Home', path: '/' },
@@ -58,7 +58,7 @@ function Navbar(): JSX.Element {
 						</div>
 						<div className="icon" onClick={() => setShowCart((prev) => !prev)}>
 							<BsHandbag />
-							{cartCount !== 0 && <span>{cartCount}</span>}
+							{cartState.cartCount !== 0 && <span>{cartState.cartCount}</span>}
 						</div>
 					</div>
 				</div>

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import './index.scss';
-import AppContext from './lib/context/AppContext';
+import AppContext from './lib/context/CartContext';
 import Category from './pages/Category/Category';
 import Home from './pages/Home/Home';
 import Product from './pages/Product/Product';
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
 				element: <Home />
 			},
 			{
-				path: '/:categoryName',
+				path: '/:category',
 				element: <Category />
 			},
 			{

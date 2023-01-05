@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import { MdClose } from 'react-icons/md';
-import { TbSearch } from 'react-icons/tb';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../../lib/hooks/useFetch';
+import { product } from '../../lib/interfaces/product';
 import './Search.scss';
 
-interface Search {
+interface props {
 	setShowSearch: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Search({ setShowSearch }: Search): JSX.Element {
+function Search({ setShowSearch }: props): JSX.Element {
 	const [query, setQuery] = useState('');
 	const navigate = useNavigate();
 
-	const handleChange = (e: Event) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
 	};
 
@@ -32,7 +32,7 @@ function Search({ setShowSearch }: Search): JSX.Element {
 					type="text"
 					placeholder="Search for products"
 					value={query}
-					onChange={handleChange}
+					onChange={(e) => handleChange(e)}
 				/>
 
 				<div className="close-btn" onClick={() => setShowSearch(false)}>
@@ -41,29 +41,29 @@ function Search({ setShowSearch }: Search): JSX.Element {
 			</div>
 			<div className="search-result-content">
 				<div className="search-results">
-					{data?.data?.map((item) => (
-						<div
-							key={item.id}
-							onClick={() => {
-								navigate(`/product/${item.attributes.slug}`);
-								setShowSearch(false);
-							}}
-							className="search-result-item">
-							<div className="img-container">
-								<img
-									src={
-										import.meta.env.VITE_STRIPE_APP_DEV_URL +
-										item.attributes.image.data[0].attributes.url
-									}
-									alt={item.attributes.image.data[0].attributes.alternativeText}
-								/>
+					{data.data.map((item: product) => {
+						const url = import.meta.env.VITE_STRIPE_APP_DEV_URL;
+						const imgSrc = item.attributes.image.data[0].attributes.url;
+						const imgAlt =
+							item.attributes.image.data[0].attributes.alternativeText;
+
+						return (
+							<div
+								key={item.id}
+								onClick={() => {
+									navigate(`/product/${item.attributes.slug}`);
+									setShowSearch(false);
+								}}
+								className="search-result-item">
+								<div className="img-container">
+									<img src={url + imgSrc} alt={imgAlt} />
+								</div>
+								<div className="prod-details">
+									<span className="name">{item.attributes.title}</span>
+								</div>
 							</div>
-							<div className="prod-details">
-								<span className="name">{item.attributes.title}</span>
-								{/* <span className="desc">{item.attributes.description}</span> */}
-							</div>
-						</div>
-					))}
+						);
+					})}
 				</div>
 			</div>
 		</div>
