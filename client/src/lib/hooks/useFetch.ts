@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
 import { fetchDataFromApi } from '../api/api';
+import { product } from '../interfaces/product';
 
-const useFetch = (endpoint: string, setValue) => {
-	const [data, setData] = useState();
+const useFetch = (endpoint: string) => {
+	const [data, setData] = useState<product[]>();
+	const [loading, setLoading] = useState<boolean>(true);
 
 	const makeApiCall = async () => {
 		const res = await fetchDataFromApi(endpoint);
 		setData(res);
-		setValue(res.data[0].attributes.variants[0]);
+		setLoading(false);
 	};
 
 	useEffect(() => {
 		makeApiCall();
 	}, [endpoint]);
 
-	return { data };
+	return [data, loading];
 };
 
 export default useFetch;

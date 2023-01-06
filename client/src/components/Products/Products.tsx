@@ -4,9 +4,7 @@ import './Products.scss';
 
 interface props {
 	header?: string;
-	products: {
-		data: product[];
-	};
+	products: product[];
 }
 
 function Products({ header, products }: props): JSX.Element {
@@ -23,7 +21,7 @@ function Products({ header, products }: props): JSX.Element {
 			)}
 
 			<div className="products">
-				{products.data.map((product) => (
+				{products.map((product) => (
 					<ProductCard key={product.id} product={product} />
 				))}
 			</div>

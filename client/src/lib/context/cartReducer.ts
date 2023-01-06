@@ -1,4 +1,19 @@
 import { cartActionType, cartStateInterface } from '../interfaces/cart';
+import { product } from '../interfaces/product';
+
+const updateCartAmout = (array: product[]) => {
+	let newCartCount = 0;
+	let newCartSubTotal = 0;
+
+	array.map((item) => {
+		if (item.quantity) {
+			newCartCount += item.quantity;
+			newCartSubTotal += item.attributes.price * item.quantity;
+		}
+	});
+
+	return [newCartCount, newCartSubTotal];
+};
 
 export const cartReducer = (
 	cartState: cartStateInterface,
@@ -39,15 +54,7 @@ export const cartReducer = (
 			const cartItems = [...cartState.cartItems];
 			cartItems[id] = updatedCartItem;
 
-			let newCartCount = 0;
-			let newCartSubTotal = 0;
-
-			cartItems.map((item) => {
-				if (item.quantity) {
-					newCartCount += item.quantity;
-					newCartSubTotal += item.attributes.price * item.quantity;
-				}
-			});
+			const [newCartCount, newCartSubTotal] = updateCartAmout(cartItems);
 
 			return {
 				cartItems: cartItems,
@@ -61,15 +68,7 @@ export const cartReducer = (
 			let cartItems = [...cartState.cartItems];
 			cartItems.splice(id, 1);
 
-			let newCartCount = 0;
-			let newCartSubTotal = 0;
-
-			cartItems.map((item) => {
-				if (item.quantity) {
-					newCartCount += item.quantity;
-					newCartSubTotal += item.attributes.price * item.quantity;
-				}
-			});
+			const [newCartCount, newCartSubTotal] = updateCartAmout(cartItems);
 
 			return {
 				cartItems: cartItems,

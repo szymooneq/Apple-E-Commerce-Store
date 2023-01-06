@@ -11,7 +11,7 @@ function Category(): JSX.Element {
 
 	if (!data) return null;
 
-	const categoryName = data.data[0].attributes.category.data.attributes.name;
+	const categoryName = data[0].attributes.category.data.attributes.name;
 
 	return (
 		<div className="category-main-content">

@@ -41,29 +41,30 @@ function Search({ setShowSearch }: props): JSX.Element {
 			</div>
 			<div className="search-result-content">
 				<div className="search-results">
-					{data.data.map((item: product) => {
-						const url = import.meta.env.VITE_STRIPE_APP_DEV_URL;
-						const imgSrc = item.attributes.image.data[0].attributes.url;
-						const imgAlt =
-							item.attributes.image.data[0].attributes.alternativeText;
+					{data &&
+						data.map((item) => {
+							const url = import.meta.env.VITE_STRIPE_APP_DEV_URL;
+							const imgSrc = item.attributes.image.data[0].attributes.url;
+							const imgAlt =
+								item.attributes.image.data[0].attributes.alternativeText;
 
-						return (
-							<div
-								key={item.id}
-								onClick={() => {
-									navigate(`/product/${item.attributes.slug}`);
-									setShowSearch(false);
-								}}
-								className="search-result-item">
-								<div className="img-container">
-									<img src={url + imgSrc} alt={imgAlt} />
+							return (
+								<div
+									key={item.id}
+									onClick={() => {
+										navigate(`/product/${item.attributes.slug}`);
+										setShowSearch(false);
+									}}
+									className="search-result-item">
+									<div className="img-container">
+										<img src={url + imgSrc} alt={imgAlt} />
+									</div>
+									<div className="prod-details">
+										<span className="name">{item.attributes.title}</span>
+									</div>
 								</div>
-								<div className="prod-details">
-									<span className="name">{item.attributes.title}</span>
-								</div>
-							</div>
-						);
-					})}
+							);
+						})}
 				</div>
 			</div>
 		</div>
