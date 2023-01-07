@@ -1,29 +1,27 @@
 {
-  "collectionName": "components_product_variants",
+  "collectionName": "components_product_colors",
   "info": {
-    "displayName": "Color",
-    "description": ""
+    "displayName": "Color"
   },
   "options": {},
   "attributes": {
     "colorCode": {
       "type": "string"
     },
+    "displayName": {
+      "type": "string"
+    },
     "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
     },
     "value": {
-      "type": "string"
-    },
-    "displayName": {
       "type": "string"
     }
   }

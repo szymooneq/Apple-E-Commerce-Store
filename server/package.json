@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "apple-store-server",
   "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
@@ -9,22 +9,24 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
+  "devDependencies": {},
   "dependencies": {
     "@strapi/plugin-i18n": "4.5.5",
     "@strapi/plugin-users-permissions": "4.5.5",
+    "@strapi/provider-upload-cloudinary": "4.5.5",
     "@strapi/strapi": "4.5.5",
-    "better-sqlite3": "8.0.1",
-    "pg": "^8.8.0",
-    "stripe": "^11.5.0"
+    "better-sqlite3": "^8.0.1",
+    "pg": "8.8.0",
+    "stripe": "^11.6.0"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "557b8b79-cfd5-4a27-a513-068e4a05621a"
+    "uuid": "35d7a084-3088-4d0b-869e-f503693ee8e5"
   },
   "engines": {
-    "node": ">=14.19.1 <=18.x.x",
+    "node": ">=12.x.x <=16.x.x",
     "npm": ">=6.0.0"
   },
   "license": "MIT"

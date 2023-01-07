@@ -1,7 +1,7 @@
-import { product, productVariant } from './product';
+import { Product, ProductVariant } from './product';
 
 export interface cartStateInterface {
-	cartItems: product[] | [];
+	cartItems: Product[] | [];
 	cartCount: number;
 	cartSubTotal: number;
 }
@@ -9,13 +9,13 @@ export interface cartStateInterface {
 export type cartActionType =
 	| {
 			type: 'addToCart';
-			payload: { product: product; variant: productVariant };
+			payload: { product: Product; variant: ProductVariant };
 	  }
 	| {
 			type: 'setCartItemQuantity';
 			payload: {
 				e: React.ChangeEvent<HTMLSelectElement>;
-				product: product;
+				product: Product;
 				id: number;
 			};
 	  }
@@ -26,10 +26,10 @@ export type cartActionType =
 
 export interface CartContextInterface {
 	cartState: cartStateInterface;
-	addToCart: (product: product, variant: productVariant) => void;
+	addToCart: (product: Product, variant: ProductVariant) => void;
 	setCartItemQuantity: (
 		e: React.ChangeEvent<HTMLSelectElement>,
-		product: product,
+		product: Product,
 		id: number
 	) => void;
 	removeFromCart: (id: number) => void;
