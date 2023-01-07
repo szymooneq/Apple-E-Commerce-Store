@@ -3,7 +3,7 @@ import ProductCard from './ProductCard/ProductCard';
 import './Products.scss';
 
 interface props {
-	header: string;
+	header?: string;
 	products: Product[];
 }
 
