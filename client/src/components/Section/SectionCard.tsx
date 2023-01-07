@@ -1,33 +1,30 @@
-import React from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { HomeCards } from '../../lib/interfaces/home';
 import './SectionCard.scss';
 
-interface props {
-	device: string;
-	quote: string;
-	link: string;
-	img: string;
-	theme: string;
-	children: React.ReactNode;
-}
-
 function SectionCard({
+	theme,
 	device,
 	quote,
-	link,
+	href,
 	img,
-	theme,
-	children
-}: props): JSX.Element {
+	logo
+}: HomeCards): JSX.Element {
 	return (
 		<div className="hero-banner" data-theme={theme}>
 			<div className="content">
 				<div className="text-content">
-					{children}
+					{logo ? (
+						<div className="logo">
+							<img src={logo} alt={`${device} Logo`} />
+						</div>
+					) : (
+						<h1>{device}</h1>
+					)}
 					<h2>{quote}</h2>
 					<div className="text-links">
-						<Link to={link}>
+						<Link to={href}>
 							Shop Now
 							<FiChevronRight />
 						</Link>

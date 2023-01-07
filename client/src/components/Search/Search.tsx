@@ -1,8 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import useFetch from '../../lib/hooks/useFetch';
-import { product } from '../../lib/interfaces/product';
+import { getBySearchProducts } from '../../lib/api/getData';
 import './Search.scss';
 
 interface props {
@@ -12,18 +12,13 @@ interface props {
 function Search({ setShowSearch }: props): JSX.Element {
 	const [query, setQuery] = useState('');
 	const navigate = useNavigate();
+	const { data } = useQuery(['searchParam', query], () =>
+		getBySearchProducts(query)
+	);
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
 	};
-
-	let { data } = useFetch(
-		`/api/products?populate=*&filters[title][$contains]=${query}`
-	);
-
-	if (!query.length) {
-		data = null;
-	}
 
 	return (
 		<div className="search-modal">

@@ -68,7 +68,6 @@
 
 	.search-result-content {
 		margin: 0 auto;
-		// padding: 0 20px;
 		max-width: calc(100% - 20px);
 
 		@include md {
@@ -117,16 +116,6 @@
 						font-weight: 400;
 						overflow: hidden;
 					}
-
-					/* .desc {
-						display: block;
-						font-size: 14px;
-						line-height: 1;
-						text-overflow: ellipsis;
-						white-space: nowrap;
-						overflow: hidden;
-						color: rgba(0, 0, 0, 0.5);
-					} */
 				}
 			}
 		}

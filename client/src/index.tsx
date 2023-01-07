@@ -4,6 +4,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import './index.scss';
 import AppContext from './lib/context/CartContext';
+import NotFound from './pages/404/NotFound';
 import Category from './pages/Category/Category';
 import Home from './pages/Home/Home';
 import Product from './pages/Product/Product';
@@ -17,12 +18,16 @@ const router = createBrowserRouter([
 				element: <Home />
 			},
 			{
-				path: '/:category',
+				path: 'category/:category',
 				element: <Category />
 			},
 			{
-				path: '/product/:id',
+				path: '/product/:slug',
 				element: <Product />
+			},
+			{
+				path: '*',
+				element: <NotFound />
 			}
 		]
 	}

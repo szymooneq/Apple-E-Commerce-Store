@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { product } from '../../../lib/interfaces/product';
+import { Product } from '../../../lib/interfaces/product';
 import './ProductCard.scss';
 
 interface props {
-	product: product;
+	product: Product;
 }
 
 function ProductCard({ product }: props): JSX.Element {

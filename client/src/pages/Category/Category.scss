@@ -1,7 +1,11 @@
 @import '../../lib/config/mixins.scss';
 
-.category-main-content {
+.category-page {
 	margin: 50px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 500px;
 
 	@include md {
 		margin: 75px 0;

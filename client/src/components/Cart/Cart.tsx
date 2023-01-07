@@ -1,7 +1,7 @@
-import { loadStripe } from '@stripe/stripe-js';
-import { useContext } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useContext, useState } from 'react';
 import { MdClose } from 'react-icons/md';
-import { makePaymentRequest } from '../../lib/api/api';
+import requestPayment from '../../lib/api/requestPayment';
 import { CartContext } from '../../lib/context/CartContext';
 import './Cart.scss';
 import CartItems from './CartItems/CartItems';
@@ -12,66 +12,65 @@ interface props {
 }
 
 function Cart({ showCart, setShowCart }: props): JSX.Element {
+	const [loading, setLoading] = useState<boolean>(false);
 	const { cartState } = useContext(CartContext);
 
-	const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-
-	const handlePayment = async () => {
-		try {
-			const stripe = await stripePromise;
-			const res = await makePaymentRequest.post('/api/orders', {
-				products: cartState.cartItems
-			});
-
-			await stripe?.redirectToCheckout({
-				sessionId: res.data.stripeSession.id
-			});
-		} catch (error) {
-			console.log(error);
-		}
+	const handleLoading = (loading: boolean) => {
+		setLoading(loading);
 	};
 
 	return (
-		<div className="cart-panel" data-open={showCart}>
-			<div className="cart-content">
-				<div className="cart-header">
-					<h1>Shopping bag.</h1>
-					<div className="close-btn" onClick={() => setShowCart(false)}>
-						<MdClose />
-					</div>
-				</div>
+		<>
+			<div
+				className="opac-layer"
+				data-cart-open={showCart}
+				onClick={() => setShowCart(false)}></div>
+			<section className="cart" data-cart-open={showCart}>
+				<div className="cart-content">
+					<header className="cart-header">
+						<h1>Shopping bag.</h1>
+						<div className="close-btn" onClick={() => setShowCart(false)}>
+							<MdClose />
+						</div>
+					</header>
 
-				{!cartState.cartItems.length ? (
-					<div className="empty-cart">
-						<p>Your Bag is empty.</p>
-					</div>
-				) : (
-					<>
-						<CartItems />
-						<div className="cart-footer">
-							<div className="subtotal">
-								<div className="subtotal-item">
-									<div>Subtotal</div>
+					{!cartState.cartItems.length ? (
+						<div className="cart-empty">
+							<p>Your Bag is empty.</p>
+						</div>
+					) : (
+						<>
+							<CartItems />
+							<div className="cart-footer">
+								<div className="subtotal">
+									<div className="subtotal-item">
+										<div>Subtotal</div>
+										<div>${cartState.cartSubTotal}</div>
+									</div>
+									<div className="subtotal-item">
+										<div>Shipping</div>
+										<div>FREE</div>
+									</div>
+								</div>
+
+								<div className="total">
+									<div>Total:</div>
 									<div>${cartState.cartSubTotal}</div>
 								</div>
-								<div className="subtotal-item">
-									<div>Shipping</div>
-									<div>FREE</div>
+								<div className="checkout-button">
+									<button
+										onClick={() => requestPayment(cartState, handleLoading)}
+										disabled={loading}>
+										{loading && <CircularProgress />}
+										Checkout
+									</button>
 								</div>
 							</div>
-
-							<div className="total">
-								<div>Total:</div>
-								<div>${cartState.cartSubTotal}</div>
-							</div>
-							<div className="checkout-button">
-								<button onClick={handlePayment}>Checkout</button>
-							</div>
-						</div>
-					</>
-				)}
-			</div>
-		</div>
+						</>
+					)}
+				</div>
+			</section>
+		</>
 	);
 }
 

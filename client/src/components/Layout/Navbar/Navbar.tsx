@@ -16,11 +16,11 @@ function Navbar(): JSX.Element {
 
 	const navLinks = [
 		{ name: 'Home', path: '/' },
-		{ name: 'Mac', path: '/mac' },
-		{ name: 'iPad', path: '/ipad' },
-		{ name: 'iPhone', path: '/iphone' },
-		{ name: 'Watch', path: '/apple-watch' },
-		{ name: 'AirPods', path: '/airpods' }
+		{ name: 'Mac', path: '/category/mac' },
+		{ name: 'iPad', path: '/category/ipad' },
+		{ name: 'iPhone', path: '/category/iphone' },
+		{ name: 'Watch', path: '/category/apple-watch' },
+		{ name: 'AirPods', path: '/category/airpods' }
 	];
 
 	const handleScroll = () => {
@@ -63,9 +63,6 @@ function Navbar(): JSX.Element {
 					</div>
 				</div>
 			</nav>
-			<div
-				className={`opac-layer ${showCart ? 'opac-layer-active' : ''}`}
-				onClick={() => setShowCart(false)}></div>
 			<Cart showCart={showCart} setShowCart={setShowCart} />
 			{showSearch && <Search setShowSearch={setShowSearch} />}
 		</>

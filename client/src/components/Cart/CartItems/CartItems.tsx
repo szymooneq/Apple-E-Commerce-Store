@@ -32,7 +32,7 @@ function CartItems(): JSX.Element {
 								</Link>
 							</h2>
 
-							<div className="prod-price">
+							<div className="prod-quantity">
 								<select
 									name="quantity"
 									id="quantity"
@@ -45,7 +45,7 @@ function CartItems(): JSX.Element {
 									<option value="4">4</option>
 									<option value="5">5</option>
 								</select>
-								<div className="highlight">{itemPrice}$</div>
+								<div>${itemPrice}</div>
 							</div>
 							<div className="remove" onClick={() => removeFromCart(id)}>
 								Remove

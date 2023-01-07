@@ -1,7 +1,7 @@
 import { cartActionType, cartStateInterface } from '../interfaces/cart';
-import { product } from '../interfaces/product';
+import { Product } from '../interfaces/product';
 
-const updateCartAmout = (array: product[]) => {
+const updateCartAmout = (array: Product[]) => {
 	let newCartCount = 0;
 	let newCartSubTotal = 0;
 

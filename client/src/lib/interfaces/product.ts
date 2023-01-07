@@ -1,34 +1,34 @@
-export interface product {
+export interface Product {
 	id: number;
 	quantity?: number;
-	variant?: productVariant;
+	variant?: ProductVariant;
 	attributes: {
 		title: string;
 		slug: string;
 		price: number;
 		isNew: boolean;
 		image: {
-			data: productImage[];
+			data: ProductImage[];
 		};
 		createdAt: string;
 		publishedAt: string;
 		updatedAt: string;
-		variants: productVariant[];
-		category: productCategory;
+		variants: ProductVariant[];
+		category: ProductCategory;
 	};
 }
 
-export interface productVariant {
+export interface ProductVariant {
 	id: number;
 	value: string;
 	colorCode: string;
 	displayName: string;
 	image: {
-		data: productImage;
+		data: ProductImage;
 	};
 }
 
-interface productImage {
+interface ProductImage {
 	id: number;
 	attributes: {
 		alternativeText: string;
@@ -36,7 +36,7 @@ interface productImage {
 	};
 }
 
-interface productCategory {
+interface ProductCategory {
 	data: {
 		id: number;
 		attributes: {

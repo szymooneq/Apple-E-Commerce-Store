@@ -1,24 +1,28 @@
+import CircularProgress from '@mui/material/CircularProgress';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import Products from '../../components/Products/Products';
-import useFetch from '../../lib/hooks/useFetch';
+import { getProductList } from '../../lib/api/getData';
 import './Category.scss';
 
 function Category(): JSX.Element {
 	const { category } = useParams();
-	const { data } = useFetch(
-		`/api/products?populate=*&[filters][category][slug]=${category}`
+	const { data, isLoading } = useQuery([`category${category}`], () =>
+		getProductList(category)
 	);
 
-	if (!data) return null;
-
-	const categoryName = data[0].attributes.category.data.attributes.name;
-
 	return (
-		<div className="category-main-content">
+		<section className="category-page">
 			<div className="layout">
-				<Products products={data} header={`Shop ${categoryName}`} />
+				{isLoading && <CircularProgress />}
+				{data?.productList && (
+					<Products
+						products={data.productList}
+						header={`Shop ${data.productsCategory}`}
+					/>
+				)}
 			</div>
-		</div>
+		</section>
 	);
 }
 
