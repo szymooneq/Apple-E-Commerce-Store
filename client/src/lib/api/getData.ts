@@ -15,7 +15,7 @@ interface HttpResponse {
 
 const GET_PARAMS = {
 	headers: {
-		Authorization: 'bearer ' + import.meta.env.VITE_STRIPE_APP_ADMIN_TOKEN
+		Authorization: 'bearer ' + import.meta.env.VITE_STRAPI_USER_TOKEN
 	}
 };
 

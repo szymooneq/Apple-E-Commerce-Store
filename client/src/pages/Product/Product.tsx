@@ -31,7 +31,6 @@ function Product(): JSX.Element {
 							<div className="mobile-image">
 								<img
 									src={
-										import.meta.env.VITE_STRIPE_APP_DEV_URL +
 										data.attributes.variants[variant].image.data.attributes.url
 									}
 									alt={
@@ -104,7 +103,6 @@ function Product(): JSX.Element {
 						<div className="right">
 							<img
 								src={
-									import.meta.env.VITE_STRIPE_APP_DEV_URL +
 									data.attributes.variants[variant].image.data.attributes.url
 								}
 								alt={

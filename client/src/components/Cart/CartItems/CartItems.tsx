@@ -12,7 +12,6 @@ function CartItems(): JSX.Element {
 			{cartState.cartItems.map((cartItem, id) => {
 				let itemPrice;
 
-				const url = import.meta.env.VITE_STRIPE_APP_DEV_URL;
 				const imgSrc = cartItem.variant?.image.data.attributes.url;
 				const imgAlt = cartItem.variant?.image.data.attributes.alternativeText;
 
@@ -23,7 +22,7 @@ function CartItems(): JSX.Element {
 				return (
 					<div key={id} className="cart-product">
 						<div className="img-container">
-							<img src={url + imgSrc} alt={imgAlt} />
+							<img src={imgSrc} alt={imgAlt} />
 						</div>
 						<div className="prod-details">
 							<h2 className="name">

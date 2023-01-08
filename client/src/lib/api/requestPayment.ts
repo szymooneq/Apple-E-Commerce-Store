@@ -8,7 +8,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 const POST_PARAMS = axios.create({
 	baseURL: STRIPE_URL,
 	headers: {
-		Authorization: 'bearer ' + import.meta.env.VITE_STRIPE_APP_ADMIN_TOKEN
+		Authorization: 'bearer ' + import.meta.env.VITE_STRAPI_USER_TOKEN
 	}
 });
 
