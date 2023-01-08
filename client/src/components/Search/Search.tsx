@@ -38,7 +38,6 @@ function Search({ setShowSearch }: props): JSX.Element {
 				<div className="search-results">
 					{data &&
 						data.map((item) => {
-							const url = import.meta.env.VITE_STRIPE_APP_DEV_URL;
 							const imgSrc = item.attributes.image.data[0].attributes.url;
 							const imgAlt =
 								item.attributes.image.data[0].attributes.alternativeText;
@@ -52,7 +51,7 @@ function Search({ setShowSearch }: props): JSX.Element {
 									}}
 									className="search-result-item">
 									<div className="img-container">
-										<img src={url + imgSrc} alt={imgAlt} />
+										<img src={imgSrc} alt={imgAlt} />
 									</div>
 									<div className="prod-details">
 										<span className="name">{item.attributes.title}</span>

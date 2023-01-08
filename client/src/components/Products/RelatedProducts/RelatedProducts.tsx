@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { getRelatedProducts } from '../../../lib/api/getData';
+import Spinner from '../../Spinner/Spinner';
 import Products from '../Products';
+import './RelatedProducts.scss';
 
 interface props {
 	productSlug: string;
@@ -14,7 +16,7 @@ function RelatedProducts({ productSlug, categoryId }: props): JSX.Element {
 
 	return (
 		<div className="related-products">
-			{isLoading && <div>Loading...</div>}
+			{isLoading && <Spinner />}
 			{data && <Products products={data} />}
 		</div>
 	);

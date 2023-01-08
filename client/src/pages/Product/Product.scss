@@ -2,18 +2,12 @@
 
 .single-product {
 	margin: 20px 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	min-height: 500px;
 	color: rgb(29, 29, 31);
+	position: relative;
 
 	@include md {
 		margin: 75px 0;
-	}
-
-	.loader {
-		width: max-content;
 	}
 
 	.layout {

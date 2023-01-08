@@ -1,9 +1,9 @@
-import CircularProgress from '@mui/material/CircularProgress';
 import { useQuery } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import { BsBagCheck, BsTruck } from 'react-icons/bs';
 import { useParams } from 'react-router-dom';
 import RelatedProducts from '../../components/Products/RelatedProducts/RelatedProducts';
+import Spinner from '../../components/Spinner/Spinner';
 import { getProductData } from '../../lib/api/getData';
 import { CartContext } from '../../lib/context/CartContext';
 import { ProductVariant } from '../../lib/interfaces/product';
@@ -19,7 +19,7 @@ function Product(): JSX.Element {
 
 	return (
 		<div className="single-product">
-			{isLoading && <CircularProgress />}
+			{isLoading && <Spinner />}
 			{data && (
 				<div className="layout">
 					<div className="single-product-page">

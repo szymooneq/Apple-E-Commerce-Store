@@ -25,7 +25,7 @@ const getData = async (query: string) => {
 	const dataResponse = await axios
 		.get<HttpResponse>(STRIPE_URL + query, GET_PARAMS)
 		.then((response) => {
-			console.log(response.data);
+			// console.log(response.data);
 			return response.data;
 		})
 		.catch((error) => {
@@ -63,8 +63,9 @@ export const getRelatedProducts = async (
 };
 
 export const getBySearchProducts = async (params: string) => {
-	const query = `/api/products?populate=*&filters[title][$contains]=${params}`;
+	const query = `/api/products?populate=*&filters[title][$containsi]=${params}`;
 	const dataResponse = await getData(query);
+	console.log(dataResponse?.data);
 
 	return dataResponse?.data;
 };
