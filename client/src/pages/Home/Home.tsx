@@ -8,7 +8,7 @@ import {
 	iPadHeader,
 	iPhone14Header,
 	iPhone14ProHeader
-} from '../../assets/section/index';
+} from '../../assets/images/index';
 import SectionCard from '../../components/Section/SectionCard';
 import { HomeCards } from '../../lib/interfaces/home';
 import './Home.scss';

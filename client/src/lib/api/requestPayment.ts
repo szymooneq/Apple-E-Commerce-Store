@@ -2,7 +2,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { cartStateInterface } from '../interfaces/cart';
 
-const STRIPE_URL = import.meta.env.VITE_STRIPE_APP_DEV_URL;
+const STRIPE_URL = import.meta.env.VITE_STRAPI_SERVER_URL;
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const POST_PARAMS = axios.create({

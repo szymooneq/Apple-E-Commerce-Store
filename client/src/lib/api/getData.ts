@@ -19,7 +19,7 @@ const GET_PARAMS = {
 	}
 };
 
-const STRIPE_URL = import.meta.env.VITE_STRIPE_APP_DEV_URL;
+const STRIPE_URL = import.meta.env.VITE_STRAPI_SERVER_URL;
 
 const getData = async (query: string) => {
 	const dataResponse = await axios
