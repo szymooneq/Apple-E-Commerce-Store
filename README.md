@@ -2,7 +2,11 @@
 
 ![tutorial thumbnail](./client/src/assets/_thumbnail.jpg)
 
+<<<<<<< HEAD
 Modern Apple Store built with React, TypeScript, Stripe payments, and Strapi backend for stored data. Styling with SASS.
+=======
+Modern Apple store created with React, TypeScript, Stripe payments and Strapi backend.
+>>>>>>> 1fbfd789d9eaba60e86f44b4793340fc8a0e849d
 
 https://apple-store-sd.vercel.app
 
