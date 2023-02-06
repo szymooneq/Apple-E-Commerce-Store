@@ -2,7 +2,7 @@
 
 ![tutorial thumbnail](./client/src/assets/_thumbnail.jpg)
 
-Modern Apple store created with React, TypeScript, Stripe payments and Strapi backend for data stored. Styling with SASS.
+Modern Apple Store built with React, TypeScript, Stripe payments, and Strapi backend for stored data. Styling with SASS.
 
 https://apple-store-sd.vercel.app
 
@@ -31,21 +31,21 @@ https://apple-store-sd.vercel.app
 - client created with React (Vite) with TypeScript
 - payments provided by Stripe
 - CMS with Strapi
-- server deploy on Railway.app with PostgreSQL
-- locale data stored on SQLite
+- server deployment on Railway with PostgreSQL
+- local data stored on SQLite
 - media stored on Cloudinary
-- env variables used to switch between locale and production
+- environment variables to switch between locale and production
 - data fetching and caching with Tanstack React Query
-- axios and REST API used to fetch data
-- context and reducer used for manage cart items
-- routing with React Router v6.6
-- layout and styling with SASS
+- Axios and REST API is used to fetch data
+- context and reducer for managing shopping cart items
+- routing with React Router
+- styling with SASS
 - responsive website design
 - inspired by Apple
 
 ## Tutorial and project structure
 
-Inside of project, you'll see the following folders and files:
+Inside the project you'll see the following folders and files:
 
 ```
 PROJECT_ROOT
@@ -56,7 +56,7 @@ PROJECT_ROOT
 │       ├── components          # React components
 │       ├── lib
 │       │    ├── api            # fetching functions
-│       │    ├── config         # SASS responsive config
+│       │    ├── config         # SASS mixins
 │       │    ├── context        # React context and reducer files
 │       │    ├── hooks          # custom hooks
 │       │    └── interfaces     # TypeScript interfaces
@@ -65,21 +65,21 @@ PROJECT_ROOT
 └── server                      # server files
 ```
 
-Go to `client` and `server` directory and download all missing dependencies with:
+Go to the `client` and `server` directory and download all missing dependencies as well:
 
 ```
-npm install (client) / yarn install (server, yarn required)
+yarn install
 ```
 
-After that you can run this project using:
+After that you can run this project with:
 
 ```
-npm run dev (client) / yarn develop (server)
+yarn dev (client) / develop (server)
 ```
 
-**To deploy and manage server content you need to create Railway (for server with database, free hosting for 20 days), Cloudinary (for media) and Stripe (for payments) accounts.**
+**To deploy and manage server content, you need to create an account with Railway (for servers with database, free hosting for 20 days), Cloudinary (for media) and Stripe (for payments).**
 
-After that, just create the `.env` file with the following data in `server` directory and restart your application:
+After that, just create the `.env` file with the following data in the `server` directory and restart your application:
 
 ```
 ADMIN_JWT_SECRET = GENERATE_RANDOM_CODE
@@ -94,7 +94,7 @@ CLIENT_URL = YOUR_CLIENT_URL
 NODE_ENV = development (for development) / production (for production)
 ```
 
-Except that you have to create `.env` file for `client` directory with following data:
+However, you must create an `.env` file for the `client` directory with the following data:
 
 ```
 VITE_STRAPI_USER_TOKEN = YOUT_STRAPI_TOKEN_FOR_READING_DATA (created on strapi)
@@ -102,4 +102,4 @@ VITE_STRIPE_PUBLISHABLE_KEY = YOUR_STRAPI_PUBLISHABLE_KEY
 VITE_STRAPI_SERVER_URL = YOUR_STRAPI_SERVER_URL
 ```
 
-**Don't forget to add the enviroment variables to your deployment services!**
+**Don't forget to add the environment variables to your deployment services!**
